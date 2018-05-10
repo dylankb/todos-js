@@ -1,0 +1,387 @@
+@import url("whitespace-reset.css");
+
+/* Base styles */
+
+body {
+  font: 16px Helvetica, Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+h1,h2,h3,h4,h5,h6,th { font-weight: 400; }
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 21px;
+}
+
+h2 {
+  font-size: 18px;
+  color: white;
+}
+
+/* Layout */
+
+.content {
+  overflow: auto;
+  padding: 70px 100px 355px 40px;
+  z-index: 1;
+}
+
+.navigation {
+  background-color: #464f77;
+  padding-top: 60px;
+  width: 335px;
+  float: left;
+  height: 100vh;
+  z-index: -1;
+}
+
+.navigation:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+.all-todos-heading,
+.completed-todos-heading {
+  width: 175px;
+}
+
+/* Navigation (mostly) styles */
+
+.navigation a {
+  color: #acafbe;
+}
+
+.navigation dt,
+.navigation dd {
+  display: inline-block;
+}
+
+.navigation .image-list {
+  background: url('images/list_icon.png') 0% 50% no-repeat;
+  padding-left: 40px;
+}
+
+.active-todo-group {
+  background-color: #383f5f;
+  color: #fff;
+}
+
+.image-checkbox {
+  background: url('images/bg_checkbox_icon.png') 0% 50% no-repeat;
+  padding-left: 40px;
+}
+
+.all {
+  padding-bottom: 60px;
+}
+
+.all-todos,
+.completed-todos {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.all-todos,
+.completed-todos,
+.todo-month-container {
+  padding-left: 100px;
+}
+
+.todo-month {
+  padding-left: 40px;
+  box-sizing: border-box;
+  width: 140px;
+  margin-right: 35px;
+}
+
+.todo-month-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Main content styles */
+
+.content a {
+  color: #060606;
+  padding-left: 10px;
+}
+
+.content td a:hover {
+  color: #148fd5;
+}
+
+.content thead th {
+  font-weight: 400;
+  color: #148fd5;
+}
+
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+.content td,
+.content th {
+  padding: 15px 0;
+}
+
+.content td {
+  border-top: 1px solid #e7e7e7;
+}
+
+.content thead th:first-of-type {
+  text-align: left;
+}
+
+.checkbox {
+  background: transparent url('images/checkbox_icon.png') 0 0 no-repeat;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.todo-title {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.checked .checkbox {
+  background-image: url('images/checkbox-checked_icon.png');
+}
+
+.checked a {
+  color: #acafbe;
+  text-decoration: line-through;
+}
+
+.add {
+  list-style-image: url('images/plus_icon.png');
+}
+
+.add a {
+  color: #148fd5;
+}
+
+.add li {
+  margin-left: 20px;
+}
+
+.hide {
+  display: none;
+}
+
+.todo-item-container:hover {
+  background-color: rgba(0,100,205, 0.2);
+  cursor: pointer;
+}
+
+.navigation .tasks::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+.trash-icon {
+  text-align: center;
+  cursor: pointer;
+  width: 36px;
+}
+
+.trash-icon:hover {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+
+.tasks {
+  overflow: auto;
+}
+
+.tasks > li {
+  float: left;
+}
+
+.tasks li:nth-of-type(odd) {
+  padding-right: 30px;
+}
+
+.completed-todos-list a {
+  text-decoration: line-through;
+  color: #acafbe;
+}
+
+/* Cross-sectional styles */
+
+.all-todos .heading,
+.completed-todos .heading {
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.todos-count,
+.completed-todos-count,
+.todo-month-count {
+  background: #148fd5;
+  border-radius: 10px;
+  color: #fff;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 20px;
+  margin-right: 3px;
+  margin-top: 2px;
+  text-align: center;
+  width: 20px;
+}
+
+/* Modal styles */
+
+#menu {
+  background: url('images/menu_icon.png') 3.5% 40% no-repeat;
+  padding-top: 75px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: "";
+  background: rgba(0, 0, 0, .4);
+}
+
+.modal-content {
+  width: 575px;
+  margin-left: -287.5px;
+  left: 50%;
+  position: absolute;
+  top: 200px;
+  background: #fff;
+  padding: 40px 40px 30px 30px;
+  box-sizing: border-box;
+}
+
+.modal-content * {
+  color: #757575;
+}
+
+
+.titles input,
+.description textarea {
+  width: 80%;
+  font: normal 16px Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  border: 1px solid #757575;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.modal-content input {
+  height: 40px;
+}
+
+.select-style {
+  width: 24.5%;
+  display: inline-block;
+}
+
+.select-style select {
+  background: transparent;
+  border-color: #757575;
+  height: 43px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.spacer {
+  width: 4.5%
+}
+
+.titles label,
+.description label,
+.date p {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20%;
+}
+
+.titles,
+.date,
+.description {
+  margin-bottom: 20px;
+}
+
+.description label {
+  padding-top: 10px;
+  vertical-align: top;
+}
+
+.description textarea {
+  display: inline-block;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.buttons input {
+  background-color: #148fd5;
+  width: 49%;
+  font: normal 16px Helvetica, Arial, sans-serif;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  width: 175px;
+}
+
+.buttons {
+  margin-left: 20%;
+  padding-bottom: 10px;
+}
+
+.mark-complete {
+  margin-left: 15px;
+}
+
+/* Elements hidden in desktop view*/
+
+#menu {
+  display: none;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 0 10px 0 40px;
+  }
+  #menu {
+    display: inline-block;
+    width: 75px;
+    margin-top: 15px;
+  }
+  .menu-label {
+    margin-left: 40px;
+  }
+  .wrapper {
+    height: auto;
+  }
+  label {
+    cursor: pointer;
+  }
+  .navigation {
+    display: none;
+  }
+  #menu-toggle:checked ~ .navigation {
+    display: block;
+  }
+  #menu-toggle:checked ~ .content {
+    width: 30%;
+  }
+}

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>My Todo List</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+    <script src="javascripts/todos.js"></script>
+  </head>
+  <body>
+    <main>
+      <label class="menu-label" for="menu-toggle">
+        <span id="menu"></span>
+      </label>
+      <input type="checkbox" id="menu-toggle"/>
+      <div class="navigation">
+        <section class="all">
+          <header>
+            <dl class="all-todos active-todo-group">
+              <dt class="heading all-todos-heading">
+                <h2 class="image-list">All Todos</h2>
+              </dt><!--
+              --><dd class="todos-count"></dd>
+            </dl>
+          </header>
+          <article class="all-todos-list">
+
+          </article>
+        </section>
+        <section class="completed">
+          <header>
+            <dl class="completed-todos">
+              <dt class="heading completed-todos-heading">
+                <h2 class="image-checkbox">Completed</h2>
+              </dt><!--
+              --><dd class="completed-todos-count"></dd>
+            </dl>
+          </header>
+          <article class="completed-todos-list">
+
+          </article>
+        </section>
+      </div>
+      <div class="content">
+        <ul class="tasks">
+          <li><h1>All todos</h1></li>
+          <li class="todos-count">0</li>
+        </ul>
+        <table class="todo-items-list">
+          <thead>
+            <tr>
+              <th scope="col">
+                <ul class="add">
+                  <li><a class="new-todo" href="#">Add new to do</a></li>
+                </ul>
+              </th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody class="incomplete-todos-main">
+          </tbody>
+          <tfoot class="completed-todos-main">
+          </tfoot>
+        </table>
+        <div class="modal hide">
+        </div>
+        <div class="modal-content hide">
+        </div>
+      </div>
+
+    </main>
+
+    <script id="todoItems" type="text/x-handlebars">
+      {{#each todoItems}}
+        {{> todoItem}}
+      {{/each}}
+    </script>
+
+    <script id="todoItem" type="text/x-handlebars" data-type="partial">
+      <tr data-todo-id={{id}}>
+        <td class="todo-item-container">
+          <div class="todo-item {{#if completed}} checked {{/if}}">
+            <span class="checkbox"></span>
+            <a class="todo-title" href="#">{{title}} - {{formatDateMonthYear dueDate}}</a>
+          </div>
+        </td>
+        <td class="trash-icon"><img src="assets/images/trash_icon.png" alt="Small trash icon"></td>
+      </tr>
+    </script>
+
+    <script id="todoForm" type="text/x-handlebars">
+      <form class="todo-form" data-todo-id={{id}}>
+        <div class="titles">
+          <label for="title">Title</label><!--
+          --><input type="text" name="title" id="title" placeholder="Item 1" value="{{title}}">
+        </div>
+        <div class="date">
+          <p>Due Date</p><!--
+          --><div class="select-style">
+            <select name="day" id="day">
+              {{#if day}}
+                <option value="{{day}}">{{day}}</option>
+              {{else}}
+                <option id="default-selected" value="">Day</option>
+              {{/if}}
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="31">31</option>
+            </select>
+          </div>
+          <span class="spacer">/</span>
+          <div class="select-style">
+            <select name="month" id="month">
+              {{#if month}}
+                <option value="{{month}}">{{month}}</option>
+              {{else}}
+                <option value="">Month</option>
+              {{/if}}
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </div>
+          <span class="spacer">/</span>
+          <div class="select-style">
+            <select id="year" name="year">
+              {{#if year}}
+                <option value="{{year}}">{{year}}</option>
+              {{else}}
+                <option value="">Year</option>
+              {{/if}}
+              <option>2009</option>
+              <option>2010</option>
+              <option>2011</option>
+              <option>2012</option>
+              <option>2013</option>
+              <option>2014</option>
+              <option>2015</option>
+              <option>2016</option>
+              <option>2017</option>
+              <option>2018</option>
+            </select>
+          </div>
+        </div>
+        <div class="description">
+          <label for="description">Description</label><!--
+          --><textarea name="description" id="description" placeholder="Description" rows="7" cols="50"></textarea>
+        </div>
+        <div class="buttons">
+          <input class="create-todo" type="submit" value="Save">
+          <input class="mark-complete" type="submit" value="Mark As Complete">
+        </div>
+      </form>
+    </script>
+
+    <script id="navTodoMonths" type="text/x-handlebars">
+      {{#each months}}
+        {{> monthTodos}}
+      {{/each}}
+    </script>
+
+    <script id="monthTodos" type="text/x-handlebars" data-type="partial">
+      <dl class="todo-month-container {{#if (selectedGroupAll this)}}active-todo-group{{/if}}" data-date-key="{{dateKey}}">
+        <dt class="todo-month">
+          <a href="#">{{formatDateMonthYear dateKey}}</a>
+        </dt><!--
+        --><dd class="todo-month-count">{{todosCountByMonth ids}}</dd>
+      </dl>
+    </script>
+
+    <script id="navCompletedTodoMonths" type="text/x-handlebars">
+      {{#each months}}
+        {{> monthTodosCompleted}}
+      {{/each}}
+    </script>
+
+    <script id="monthTodosCompleted" type="text/x-handlebars" data-type="partial">
+      <dl class="todo-month-container {{#if (selectedGroupCompleted this)}}active-todo-group{{/if}}" data-date-key="{{dateKey}}">
+        <dt class="todo-month">
+          <a href="#">{{formatDateMonthYear dateKey}}</a>
+        </dt><!--
+        --><dd class="todo-month-count">{{todosCompletedByMonth dateKey}}</dd>
+      </dl>
+    </script>
+
+  </body>
+</html>
